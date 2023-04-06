@@ -1,6 +1,8 @@
+import AppRouter from "./router/AppRouter";
+
 const JournalApp = (): JSX.Element => (
   <>
-    <h1>Journal App</h1>
+    <AppRouter />
   </>
 );
 
