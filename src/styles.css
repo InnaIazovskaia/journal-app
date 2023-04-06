@@ -1,1 +1,5 @@
-@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+
+.box-shadow {
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+}
