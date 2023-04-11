@@ -1,9 +1,9 @@
 import { Grid, Typography } from "@mui/material";
 
-type AuthLayoutProps = {
+interface AuthLayoutProps {
   children: JSX.Element | JSX.Element[];
   title: string;
-};
+}
 
 export const AuthLayout = ({
   children,
