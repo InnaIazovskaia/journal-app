@@ -6,6 +6,11 @@ module.exports = {
   extends: ["plugin:react/recommended", "xo", "prettier"],
   overrides: [
     {
+      rules: {
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "@typescript-eslint/consistent-type-imports": "off",
+        "@typescript-eslint/naming-convention": "off",
+      },
       extends: ["xo-typescript", "prettier"],
       files: ["*.ts", "*.tsx"],
     },
