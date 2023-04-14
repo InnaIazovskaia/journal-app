@@ -15,7 +15,7 @@ module.exports = {
       files: ["*.ts", "*.tsx"],
     },
     {
-      files: ["src/vite-env.d.ts"],
+      files: ["src/vite-env.d.ts", "src/env.d.ts"],
       rules: {
         "@typescript-eslint/triple-slash-reference": "off",
       },
