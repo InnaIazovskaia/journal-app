@@ -14,3 +14,7 @@ export interface UserCredentials {
   email: string;
   password: string;
 }
+
+export interface UserRegisterData extends UserCredentials {
+  displayName: string;
+}
