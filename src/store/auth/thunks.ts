@@ -1,4 +1,8 @@
-import { signInWIthGoogle } from "../../firebase/providers";
+import {
+  signInWithGoogle,
+  registerUserWithEmailPassword,
+} from "../../firebase/providers";
+import { UserRegisterData } from "../../types";
 import { AppDispatch } from "../store";
 import {
   loginUserActionCreator,
@@ -14,7 +18,7 @@ export const checkingAuthantication =
 export const startGoogleSignIn = () => async (dispatch: AppDispatch) => {
   dispatch(checkingCredentialsActionCreator());
 
-  const result = await signInWIthGoogle();
+  const result = await signInWithGoogle();
 
   if (!result.ok) {
     dispatch(logoutUserActionCreator(result.errorMessage!));
@@ -30,3 +34,28 @@ export const startGoogleSignIn = () => async (dispatch: AppDispatch) => {
     })
   );
 };
+
+export const startCreatingUserWithEmailPassword =
+  ({ displayName, email, password }: UserRegisterData) =>
+  async (dispatch: AppDispatch) => {
+    dispatch(checkingCredentialsActionCreator());
+
+    const { ok, uid, photoURL, errorMessage } =
+      await registerUserWithEmailPassword({
+        email,
+        displayName,
+        password,
+      });
+
+    if (!ok) return dispatch(logoutUserActionCreator(errorMessage!));
+
+    dispatch(
+      loginUserActionCreator({
+        uid: uid!,
+        displayName,
+        email,
+        photoURL: photoURL!,
+        errorMesssage: errorMessage!,
+      })
+    );
+  };
