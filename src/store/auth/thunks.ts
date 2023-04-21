@@ -2,6 +2,7 @@ import {
   signInWithGoogle,
   registerUserWithEmailPassword,
   loginWithEmailPassword,
+  logoutFireBase,
 } from "../../firebase/providers";
 import { UserCredentials, UserRegisterData } from "../../types";
 import { AppDispatch } from "../store";
@@ -80,3 +81,9 @@ export const startLoginWithEmailPassword =
       })
     );
   };
+
+export const startLogout = () => async (dispatch: AppDispatch) => {
+  await logoutFireBase();
+
+  dispatch(logoutUserActionCreator(""));
+};
