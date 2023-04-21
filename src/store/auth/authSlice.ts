@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { UserData, UserState } from "../../types";
 
 const initialState: UserState = {
-  status: "not-authenticated",
+  status: "checking",
   uid: "",
   email: "",
   displayName: "",
@@ -25,6 +25,7 @@ export const authSlice = createSlice({
     }),
     logoutUser: (state, action: PayloadAction<string>): UserState => ({
       ...initialState,
+      status: "not-authenticated",
       errorMesssage: action.payload,
     }),
     checkingCredentials(state) {
