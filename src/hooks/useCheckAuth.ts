@@ -7,6 +7,7 @@ import {
 import { useAppSelector } from "../store/hooks";
 import { onAuthStateChanged } from "firebase/auth";
 import { FirebaseAuth } from "../firebase/config";
+import { startLoadingNotes } from "../store/journal";
 
 export const useCheckAuth = () => {
   const { status } = useAppSelector((state) => state.auth);
@@ -26,6 +27,8 @@ export const useCheckAuth = () => {
           errorMesssage: "",
         })
       );
+
+      await dispatch(startLoadingNotes());
     });
   }, []);
 
