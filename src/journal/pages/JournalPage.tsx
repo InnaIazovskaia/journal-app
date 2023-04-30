@@ -7,7 +7,7 @@ import { startNewNote } from "../../store/journal";
 import { useAppSelector } from "../../store/hooks";
 
 export const JournalPage = (): JSX.Element => {
-  const { isSaving, active } = useAppSelector((state) => state.journal);
+  const { isSaving, activeNote } = useAppSelector((state) => state.journal);
   const { dispatch } = store;
 
   const onClickNewNote = async () => {
@@ -16,7 +16,7 @@ export const JournalPage = (): JSX.Element => {
 
   return (
     <JournalLayout>
-      {active ? <NoteView /> : <NothingSelectedView />}
+      {activeNote ? <NoteView /> : <NothingSelectedView />}
 
       <IconButton
         onClick={onClickNewNote}

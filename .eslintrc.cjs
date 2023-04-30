@@ -20,6 +20,12 @@ module.exports = {
         "@typescript-eslint/triple-slash-reference": "off",
       },
     },
+    {
+      files: ["src/store/journal/journalSlice.ts"],
+      rules: {
+        "@typescript-eslint/consistent-type-assertions": "off",
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: "latest",
