@@ -5,7 +5,7 @@ const initialState: JournalSate = {
   isSaving: false,
   messageSaved: "",
   notes: [] as NotesStructure,
-  active: false,
+  activeNote: {} as NoteStructure,
 };
 
 export const journalSlice = createSlice({
@@ -22,6 +22,9 @@ export const journalSlice = createSlice({
     setNotes(state, action: PayloadAction<NotesStructure>) {
       state.notes = action.payload;
     },
+    setActiveNote(state, action: PayloadAction<NoteStructure>) {
+      state.activeNote = action.payload;
+    },
   },
 });
 
@@ -29,4 +32,5 @@ export const {
   addNewEmptyNote: addNewEmptyNoteActionCreator,
   savingNewNote: savingNewNoteActionCreator,
   setNotes: setNotesActionCreator,
+  setActiveNote: setActiveNoteActionCreator,
 } = journalSlice.actions;
