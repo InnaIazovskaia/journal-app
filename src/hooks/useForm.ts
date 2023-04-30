@@ -12,6 +12,10 @@ export const useForm = <FormState>(
     createValidators();
   }, [formState]);
 
+  useEffect(() => {
+    setFormState(initialForm);
+  }, [initialForm]);
+
   const isFormValid = useMemo(() => {
     for (const formValue of Object.keys(formValidtion)) {
       if (formValidtion[formValue as keyof FormCheckValues] !== "")

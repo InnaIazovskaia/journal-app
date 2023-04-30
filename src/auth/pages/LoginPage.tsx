@@ -19,12 +19,12 @@ import {
 import { useAppSelector } from "../../store/hooks";
 import { useMemo } from "react";
 
-export const LoginPage = (): JSX.Element => {
-  const initialLoginState: UserCredentials = {
-    email: "",
-    password: "",
-  };
+const initialLoginState: UserCredentials = {
+  email: "",
+  password: "",
+};
 
+export const LoginPage = (): JSX.Element => {
   const { dispatch } = store;
 
   const { status, errorMesssage } = useAppSelector((state) => state.auth);

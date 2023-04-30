@@ -8,8 +8,30 @@ import {
 import { NoteStructure } from "../../types/journalTypes";
 import { TurnedInNot } from "@mui/icons-material";
 import { useMemo } from "react";
+import { store } from "../../store";
+import { setActiveNoteActionCreator } from "../../store/journal";
 
-export const SideBarItem = ({ title, body }: NoteStructure): JSX.Element => {
+export const SideBarItem = ({
+  title,
+  body,
+  id,
+  date,
+  imageUrls,
+}: NoteStructure): JSX.Element => {
+  const { dispatch } = store;
+
+  const onClickNote = () => {
+    dispatch(
+      setActiveNoteActionCreator({
+        title,
+        body,
+        id,
+        date,
+        imageUrls,
+      })
+    );
+  };
+
   const newTitle = useMemo(
     () => (title.length > 17 ? title.substring(0, 17) + "..." : title),
     [title]
@@ -17,7 +39,7 @@ export const SideBarItem = ({ title, body }: NoteStructure): JSX.Element => {
 
   return (
     <ListItem disablePadding>
-      <ListItemButton>
+      <ListItemButton onClick={onClickNote}>
         <ListItemIcon>
           <TurnedInNot />
         </ListItemIcon>

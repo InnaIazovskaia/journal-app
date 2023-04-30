@@ -15,13 +15,13 @@ import { useMemo, useState } from "react";
 import { startCreatingUserWithEmailPassword, store } from "../../store";
 import { useAppSelector } from "../../store/hooks";
 
-export const RegisterPage = (): JSX.Element => {
-  const initialRegisterState: UserRegisterData = {
-    email: "",
-    password: "",
-    displayName: "",
-  };
+const initialRegisterState: UserRegisterData = {
+  email: "",
+  password: "",
+  displayName: "",
+};
 
+export const RegisterPage = (): JSX.Element => {
   const { dispatch } = store;
 
   const [formSubmited, setFormSubmited] = useState(false);
