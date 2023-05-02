@@ -5,6 +5,7 @@ import {
   logoutFireBase,
 } from "../../firebase/providers";
 import { UserCredentials, UserRegisterData } from "../../types";
+import { clearNotesLogoutActionCreator } from "../journal";
 import { AppDispatch } from "../store";
 import {
   loginUserActionCreator,
@@ -84,6 +85,6 @@ export const startLoginWithEmailPassword =
 
 export const startLogout = () => async (dispatch: AppDispatch) => {
   await logoutFireBase();
-
+  dispatch(clearNotesLogoutActionCreator());
   dispatch(logoutUserActionCreator(""));
 };
