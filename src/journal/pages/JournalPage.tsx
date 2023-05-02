@@ -16,7 +16,11 @@ export const JournalPage = (): JSX.Element => {
 
   return (
     <JournalLayout>
-      {activeNote ? <NoteView /> : <NothingSelectedView />}
+      {Object.keys(activeNote).length === 0 ? (
+        <NothingSelectedView />
+      ) : (
+        <NoteView />
+      )}
 
       <IconButton
         onClick={onClickNewNote}
