@@ -1,15 +1,25 @@
-import { useEffect, useMemo } from "react";
-import { SaveOutlined } from "@mui/icons-material";
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { useEffect, useMemo, useRef } from "react";
+
+import { SaveOutlined, UploadOutlined } from "@mui/icons-material";
+import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+
 import { ImageGallery } from "../components";
 import { useForm } from "../../hooks";
 import { useAppSelector } from "../../store/hooks";
 import { store } from "../../store";
-import { setActiveNoteActionCreator } from "../../store/journal";
+import {
+  setActiveNoteActionCreator,
+  startSaveNote,
+  startUploadinfFiles,
+} from "../../store/journal";
 
 export const NoteView = (): JSX.Element => {
   const { dispatch } = store;
-  const { activeNote } = useAppSelector((state) => state.journal);
+  const { activeNote, messageSaved, isSaving } = useAppSelector(
+    (state) => state.journal
+  );
 
   const { body, title, date, onInputChange, formState } = useForm(activeNote);
 
@@ -18,9 +28,31 @@ export const NoteView = (): JSX.Element => {
     return newDate.toUTCString();
   }, [date]);
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     dispatch(setActiveNoteActionCreator(formState));
   }, [formState]);
+
+  useEffect(() => {
+    (async () => {
+      if (messageSaved.length > 0) {
+        await Swal.fire("Тote updated", messageSaved, "success");
+      }
+    })();
+  }, [messageSaved]);
+
+  const onSaveNote = async () => {
+    await dispatch(startSaveNote());
+  };
+
+  const onFileInputChange = async ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    if (target.files === null) return;
+
+    await dispatch(startUploadinfFiles(target.files));
+  };
 
   return (
     <Grid
@@ -37,7 +69,32 @@ export const NoteView = (): JSX.Element => {
         </Typography>
       </Grid>
       <Grid item>
-        <Button color="primary" sx={{ padding: 2 }}>
+        <input
+          type="file"
+          multiple
+          ref={fileInputRef}
+          onChange={onFileInputChange}
+          style={{ display: "none" }}
+        />
+
+        <IconButton
+          color="primary"
+          disabled={isSaving}
+          onClick={() => {
+            if (fileInputRef.current !== null) {
+              fileInputRef.current?.click();
+            }
+          }}
+        >
+          <UploadOutlined />
+        </IconButton>
+
+        <Button
+          disabled={isSaving}
+          onClick={onSaveNote}
+          color="primary"
+          sx={{ padding: 2 }}
+        >
           <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
           Save
         </Button>
@@ -69,7 +126,7 @@ export const NoteView = (): JSX.Element => {
         />
       </Grid>
 
-      <ImageGallery />
+      <ImageGallery images={activeNote.imageUrls} />
     </Grid>
   );
 };
