@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useRef } from "react";
 
-import { SaveOutlined, UploadOutlined } from "@mui/icons-material";
+import {
+  DeleteOutline,
+  SaveOutlined,
+  UploadOutlined,
+} from "@mui/icons-material";
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
@@ -11,6 +15,7 @@ import { useAppSelector } from "../../store/hooks";
 import { store } from "../../store";
 import {
   setActiveNoteActionCreator,
+  startDeletingNote,
   startSaveNote,
   startUploadinfFiles,
 } from "../../store/journal";
@@ -52,6 +57,10 @@ export const NoteView = (): JSX.Element => {
     if (target.files === null) return;
 
     await dispatch(startUploadinfFiles(target.files));
+  };
+
+  const onDelete = async () => {
+    await dispatch(startDeletingNote());
   };
 
   return (
@@ -124,6 +133,13 @@ export const NoteView = (): JSX.Element => {
           value={body}
           onChange={onInputChange}
         />
+      </Grid>
+
+      <Grid container justifyContent="end">
+        <Button onClick={onDelete} sx={{ mt: 2 }} color="error">
+          <DeleteOutline />
+          Delete
+        </Button>
       </Grid>
 
       <ImageGallery images={activeNote.imageUrls} />
