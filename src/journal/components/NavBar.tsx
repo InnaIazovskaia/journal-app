@@ -1,13 +1,15 @@
 import { LogoutOutlined, MenuOutlined } from "@mui/icons-material";
 import { AppBar, Grid, IconButton, Toolbar, Typography } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import { store } from "../../store";
 import { startLogout } from "../../store/auth/thunks";
 
 interface NavBarProps {
   drawerWidth: number;
+  onClick: () => void;
 }
 
-export const NavBar = ({ drawerWidth }: NavBarProps): JSX.Element => {
+export const NavBar = ({ drawerWidth, onClick }: NavBarProps): JSX.Element => {
   const { dispatch } = store;
 
   const onLogout = async () => {
@@ -25,10 +27,12 @@ export const NavBar = ({ drawerWidth }: NavBarProps): JSX.Element => {
       <Toolbar>
         <IconButton
           color="inherit"
+          aria-label="open drawer"
           edge="start"
+          onClick={onClick}
           sx={{ mr: 2, display: { sm: "none" } }}
         >
-          <MenuOutlined />
+          <MenuIcon />
         </IconButton>
 
         <Grid

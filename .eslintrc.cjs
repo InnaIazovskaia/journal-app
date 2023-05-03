@@ -10,6 +10,7 @@ module.exports = {
         "@typescript-eslint/consistent-type-definitions": "off",
         "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/naming-convention": "off",
+        "no-negated-condition": "off",
       },
       extends: ["xo-typescript", "prettier"],
       files: ["*.ts", "*.tsx"],
