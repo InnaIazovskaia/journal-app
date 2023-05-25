@@ -37,7 +37,7 @@ describe("Given an authSlice reducer", () => {
         uid: demoUser.uid,
         displayName: demoUser.displayName,
         email: demoUser.email,
-        errorMesssage: demoUser.errorMesssage,
+        errorMessage: demoUser.errorMessage,
         photoURL: demoUser.photoURL,
       };
 
@@ -71,7 +71,7 @@ describe("Given an authSlice reducer", () => {
         displayName: "",
         email: "",
         photoURL: "",
-        errorMesssage: errorMessage,
+        errorMessage,
       };
 
       expect(state).toEqual(expectedState);

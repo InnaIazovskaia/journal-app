@@ -3,7 +3,7 @@ export interface UserData {
   email: string;
   displayName: string;
   photoURL: string;
-  errorMesssage: string;
+  errorMessage: string | undefined;
 }
 
 export interface UserState extends UserData {

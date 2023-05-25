@@ -7,7 +7,7 @@ const initialState: UserState = {
   email: "",
   displayName: "",
   photoURL: "",
-  errorMesssage: "",
+  errorMessage: "",
 };
 
 export const authSlice = createSlice({
@@ -21,12 +21,12 @@ export const authSlice = createSlice({
       email: action.payload.email,
       displayName: action.payload.displayName,
       photoURL: action.payload.photoURL,
-      errorMesssage: "",
+      errorMessage: "",
     }),
     logoutUser: (state, action: PayloadAction<string>): UserState => ({
       ...initialState,
       status: "not-authenticated",
-      errorMesssage: action.payload,
+      errorMessage: action.payload,
     }),
     checkingCredentials(state) {
       state.status = "checking";

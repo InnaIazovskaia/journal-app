@@ -26,7 +26,7 @@ export const RegisterPage = (): JSX.Element => {
 
   const [formSubmited, setFormSubmited] = useState(false);
 
-  const { status, errorMesssage } = useAppSelector((state) => state.auth);
+  const { status, errorMessage } = useAppSelector((state) => state.auth);
   const isCheckingAuthentication = useMemo(
     () => status === "checking",
     [status]
@@ -101,8 +101,8 @@ export const RegisterPage = (): JSX.Element => {
           </Grid>
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-            <Grid item xs={12} display={errorMesssage ? "" : "none"}>
-              <Alert security="error"> {errorMesssage}</Alert>
+            <Grid item xs={12} display={errorMessage ? "" : "none"}>
+              <Alert security="error"> {errorMessage}</Alert>
             </Grid>
 
             <Grid item xs={12}>
