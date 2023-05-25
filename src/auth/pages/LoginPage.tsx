@@ -27,7 +27,7 @@ const initialLoginState: UserCredentials = {
 export const LoginPage = (): JSX.Element => {
   const { dispatch } = store;
 
-  const { status, errorMesssage } = useAppSelector((state) => state.auth);
+  const { status, errorMessage } = useAppSelector((state) => state.auth);
 
   const isAuthenticating = useMemo(() => status === "checking", [status]);
 
@@ -73,9 +73,9 @@ export const LoginPage = (): JSX.Element => {
             />
           </Grid>
 
-          <Grid container display={errorMesssage ? "" : "none"} sx={{ mt: 1 }}>
+          <Grid container display={errorMessage ? "" : "none"} sx={{ mt: 1 }}>
             <Grid item xs={12}>
-              <Alert severity="error">{errorMesssage}</Alert>
+              <Alert severity="error">{errorMessage}</Alert>
             </Grid>
           </Grid>
 

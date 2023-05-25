@@ -24,7 +24,7 @@ export const useCheckAuth = () => {
           displayName: user.displayName!,
           email: user.email!,
           photoURL: user.photoURL!,
-          errorMesssage: "",
+          errorMessage: "",
         })
       );
 

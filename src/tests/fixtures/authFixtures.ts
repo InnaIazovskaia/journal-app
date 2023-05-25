@@ -6,7 +6,7 @@ export const initialState: UserState = {
   email: "",
   displayName: "",
   photoURL: "",
-  errorMesssage: "",
+  errorMessage: "",
 };
 
 export const authenticatedState: UserState = {
@@ -15,7 +15,7 @@ export const authenticatedState: UserState = {
   email: "demo@google.com",
   displayName: "Demo User",
   photoURL: "",
-  errorMesssage: "",
+  errorMessage: "",
 };
 
 export const notAuthenticatedState: UserState = {
@@ -24,13 +24,13 @@ export const notAuthenticatedState: UserState = {
   email: "",
   displayName: "",
   photoURL: "",
-  errorMesssage: "",
+  errorMessage: "",
 };
 
-export const demoUser: UserData = {
+export const demoUser = {
   uid: "ABC123",
   email: "demo@google.com",
   displayName: "Demo User",
   photoURL: "",
-  errorMesssage: "",
+  errorMessage: "",
 };

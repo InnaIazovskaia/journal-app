@@ -13,10 +13,9 @@ import {
   logoutUserActionCreator,
 } from "./authSlice";
 
-export const checkingAuthantication =
-  (email: string, password: string) => async (dispatch: AppDispatch) => {
-    dispatch(checkingCredentialsActionCreator());
-  };
+export const checkingAuthantication = () => async (dispatch: AppDispatch) => {
+  dispatch(checkingCredentialsActionCreator());
+};
 
 export const startGoogleSignIn = () => async (dispatch: AppDispatch) => {
   dispatch(checkingCredentialsActionCreator());
@@ -32,7 +31,7 @@ export const startGoogleSignIn = () => async (dispatch: AppDispatch) => {
       displayName: result.displayName!,
       email: result.email!,
       photoURL: result.photoURL!,
-      errorMesssage: result.errorMessage!,
+      errorMessage: result.errorMessage!,
     })
   );
 };
@@ -57,7 +56,7 @@ export const startCreatingUserWithEmailPassword =
         displayName,
         email,
         photoURL: photoURL!,
-        errorMesssage: errorMessage!,
+        errorMessage: errorMessage!,
       })
     );
   };
@@ -78,7 +77,7 @@ export const startLoginWithEmailPassword =
         displayName: result.displayName!,
         email: result.email!,
         photoURL: result.photoURL!,
-        errorMesssage: result.errorMessage!,
+        errorMessage: result.errorMessage!,
       })
     );
   };
