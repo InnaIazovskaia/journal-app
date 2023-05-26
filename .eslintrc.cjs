@@ -22,7 +22,11 @@ module.exports = {
       },
     },
     {
-      files: ["src/store/journal/journalSlice.ts"],
+      files: [
+        "src/store/journal/journalSlice.ts",
+        "src/tests/fixtures/journalFixtures.ts",
+        "src/tests/store/journal/journalSlice.test.ts",
+      ],
       rules: {
         "@typescript-eslint/consistent-type-assertions": "off",
       },
