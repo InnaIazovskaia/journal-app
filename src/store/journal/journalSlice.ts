@@ -50,7 +50,10 @@ export const journalSlice = createSlice({
       state.isSaving = false;
     },
     clearNotesLogout(state) {
-      state = { ...initialState };
+      state.activeNote = initialState.activeNote;
+      state.isSaving = initialState.isSaving;
+      state.messageSaved = initialState.messageSaved;
+      state.notes = initialState.notes;
     },
     deleteNoteById(state, action: PayloadAction<string>) {
       state.activeNote = {} as NoteStructure;
